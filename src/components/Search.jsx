@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Countries from "./Countries";
 
-function Search({ name }) {
+function Search({ countries }) {
   const [search, setSearch] = useState("");
 
   const submittNewSearch = (e) => {
@@ -14,12 +14,11 @@ function Search({ name }) {
     setSearch(e.target.value);
   };
 
-  // console.log(name);
-
-  const filterByName = name.filter((n) => {
-    return n.toLowerCase().includes(search.toLowerCase());
+  const filterByName = countries.filter((country) => {
+    // const name = country.map((n) => n.name.common);
+    // console.log(name);
+    return country.name.common.toLowerCase().includes(search.toLowerCase());
   });
-  console.log(filterByName);
 
   return (
     <>

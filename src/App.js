@@ -11,16 +11,13 @@ function App() {
       axios.get("https://restcountries.com/v3.1/all").then((response) => {
         const data = response.data;
         setCountries(data);
-        console.log(data);
       }),
     []
   );
 
-  const name = countries.map((c) => c.name.common);
-
   return (
     <>
-      <Search name={name} />
+      <Search countries={countries} />
     </>
   );
 }

@@ -25,7 +25,7 @@ function Countries({ allCountry }) {
   } else if (allCountry.length > 1 && allCountry.length < 10) {
     return (
       <>
-        {allCountry.map((n) => {
+        {allCountry.map((n, index) => {
           return (
             <div key={n.name.common}>
               {n.name.common}{" "}

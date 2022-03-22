@@ -7,27 +7,22 @@ function Countries({ allCountry }) {
     setClicked(!clicked);
   }
 
-  if (allCountry.length === 1) {
+  if (allCountry.length === 0) {
+    return <p>Nothing</p>;
+  } else if (allCountry.length === 1) {
+    const country = allCountry[0];
     return (
-      <>
-        {allCountry.map((n) => {
-          return (
-            <ShowCountry
-              key={n.name.common}
-              title={n.name.common}
-              capital={n.capital}
-              area={n.area}
-              languages={n.languages}
-              flag={n.flags.png}
-              alt={n.name.common}
-            />
-          );
-        })}
-      </>
+      <ShowCountry
+        key={country.name.common}
+        title={country.name.common}
+        capital={country.capital}
+        area={country.area}
+        languages={country.languages}
+        flag={country.flags.png}
+        alt={country.name.common}
+      />
     );
-  }
-
-  if (allCountry.length > 1 && allCountry.length < 10) {
+  } else if (allCountry.length > 1 && allCountry.length < 10) {
     return (
       <>
         {allCountry.map((n) => {
@@ -46,6 +41,7 @@ function Countries({ allCountry }) {
                   languages={n.languages}
                   flag={n.flags.png}
                   alt={n.name.common}
+                  clicked={clicked}
                 />
               )}
             </div>
@@ -53,9 +49,7 @@ function Countries({ allCountry }) {
         })}
       </>
     );
-  }
-
-  if (allCountry) {
+  } else {
     return (
       <>
         {allCountry.map((n) => {

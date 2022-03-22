@@ -1,5 +1,12 @@
+import { useState } from "react";
+import ShowCountry from "./ShowCountry";
+
 function Countries({ allCountry }) {
-  console.log(allCountry);
+  const [clicked, setClicked] = useState(false);
+  function handleMoreClick() {
+    setClicked(!clicked);
+  }
+
   return (
     <>
       {allCountry.length > 0 ? (
@@ -8,25 +15,36 @@ function Countries({ allCountry }) {
             if (allCountry) {
               if (allCountry.length === 1) {
                 return (
-                  <div key={n.name.common}>
-                    <h1>{n.name.common}</h1>
-                    <p>Capital: {n.capital}</p>
-                    <p>Area: {n.area} </p>
-                    <h2>Languages:</h2>
-                    {Object.values(n.languages).map((lang) => (
-                      <div key={lang}>
-                        <li>{lang}</li>
-                      </div>
-                    ))}
-                    <br />
-                    <img src={n.flags.png} alt={n.name.common} />
-                  </div>
+                  <>
+                    <ShowCountry
+                      key={n.name.common}
+                      title={n.name.common}
+                      capital={n.capital}
+                      area={n.area}
+                      languages={n.languages}
+                      flag={n.flags.png}
+                      alt={n.name.common}
+                    />
+                  </>
                 );
               } else if (allCountry.length > 1 && allCountry.length < 10) {
                 return (
                   <div key={n.name.common}>
                     {n.name.common}{" "}
-                    <button onClick={() => console.log("test")}>Show</button>
+                    <button onClick={handleMoreClick}>
+                      {clicked ? "Hide" : "Show"}
+                    </button>
+                    {clicked && (
+                      <ShowCountry
+                        key={n.name.common}
+                        title={n.name.common}
+                        capital={n.capital}
+                        area={n.area}
+                        languages={n.languages}
+                        flag={n.flags.png}
+                        alt={n.name.common}
+                      />
+                    )}
                   </div>
                 );
               } else {

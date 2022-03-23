@@ -1,12 +1,7 @@
-import { useState } from "react";
+import ShortCountry from "./ShortCountry";
 import ShowCountry from "./ShowCountry";
 
 function Countries({ allCountry }) {
-  const [clicked, setClicked] = useState(false);
-  function handleMoreClick() {
-    setClicked(!clicked);
-  }
-
   if (allCountry.length === 0) {
     return <p>Nothing</p>;
   } else if (allCountry.length === 1) {
@@ -25,26 +20,17 @@ function Countries({ allCountry }) {
   } else if (allCountry.length > 1 && allCountry.length < 10) {
     return (
       <>
-        {allCountry.map((n, index) => {
+        {allCountry.map((n) => {
           return (
-            <div key={n.name.common}>
-              {n.name.common}{" "}
-              <button onClick={handleMoreClick}>
-                {clicked ? "Hide" : "Show"}
-              </button>
-              {clicked && (
-                <ShowCountry
-                  key={n.name.common}
-                  title={n.name.common}
-                  capital={n.capital}
-                  area={n.area}
-                  languages={n.languages}
-                  flag={n.flags.png}
-                  alt={n.name.common}
-                  clicked={clicked}
-                />
-              )}
-            </div>
+            <ShortCountry
+              key={n.name.common}
+              title={n.name.common}
+              capital={n.capital}
+              area={n.area}
+              languages={n.languages}
+              flag={n.flags.png}
+              alt={n.name.common}
+            />
           );
         })}
       </>

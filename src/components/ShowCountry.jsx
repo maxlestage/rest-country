@@ -1,7 +1,4 @@
-import { useState } from "react";
-
 function ShowCountry({ title, capital, area, languages, flag, alt }) {
-  const [isDetail, setIsDetail] = useState(true);
   return (
     <>
       <div>
